@@ -128,12 +128,25 @@ def popular_banco_de_dados():
         {"id": "10007", "nome": "CommerceIA", "cidade_sede": "Manaus"}
     ]
 
+    dados_linguagens = [
+        {"id": "20001", "nome": "Python"},
+        {"id": "20002", "nome": "PHP"},
+        {"id": "20003", "nome": "Java"},
+        {"id": "20004", "nome": "C"},
+        {"id": "20005", "nome": "JavaScript"},
+        {"id": "20006", "nome": "Dart"},
+        {"id": "20007", "nome": "SQL"}
+    ]
+
     # Adiciona os dados ao Firestore
     for programador in dados_programadores:
-        db.collection("programadores").add(programador)
+        db.collection("programadores").document(programador["id"]).set(programador)
 
     for startup in dados_startups:
-        db.collection("startups").add(startup)
+        db.collection("startups").document(startup["id"]).set(startup)
+
+    for linguagem in dados_linguagens:
+        db.collection("linguagens").document(linguagem["id"]).set(linguagem)
 
 # Chama a função para popular o banco de dados
 popular_banco_de_dados()
